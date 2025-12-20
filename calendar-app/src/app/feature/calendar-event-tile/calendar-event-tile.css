@@ -1,0 +1,87 @@
+/* Remove the old .action-container if you had one */
+
+.tile-layout {
+    display: flex;
+    gap: 15px;
+}
+
+.image-container img {
+    width: 120px;
+    /* Slightly smaller to keep the collapsed view compact */
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* When expanded, we can make the image a bit larger or keep it consistent */
+.amazon-tile.expanded .image-container img {
+    width: 150px;
+    height: 150px;
+}
+
+.extra-details {
+    margin-top: 12px;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid #e7e7e7;
+    margin: 10px 0;
+}
+
+/* The new action bar layout */
+.action-bar-expanded {
+    display: flex;
+    flex-direction: column;
+    /* Stacked for that mobile app feel */
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.amazon-btn {
+    border: 1px solid;
+    border-radius: 8px;
+    /* Amazon recently moved to slightly more rounded corners */
+    padding: 12px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.amazon-btn.enroll {
+    background: #FFD814;
+    border-color: #FCD200;
+    color: #0F1111;
+}
+
+.amazon-btn.secondary {
+    background: #FFFFFF;
+    border-color: #D5D9D9;
+    box-shadow: 0 2px 5px rgba(213, 217, 217, 0.5);
+}
+
+/* Horizontal buttons for tablet/desktop widths */
+@media (min-width: 600px) {
+    .action-bar-expanded {
+        flex-direction: row;
+    }
+
+    .amazon-btn {
+        flex: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

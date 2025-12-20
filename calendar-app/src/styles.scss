@@ -1,0 +1,25 @@
+:root {
+    --amazon-orange: #FF9900;
+    --amazon-yellow: #FFD814;
+    --amazon-yellow-hover: #F7CA00;
+    --amazon-green: #007600;
+    /* Used for "In Stock" / "Available" */
+    --amazon-blue: #007185;
+    /* Used for links */
+    --amazon-text: #0F1111;
+    --amazon-bg: #eaeded;
+}
+
+body,
+html {
+    background-color: var(--amazon-bg);
+    font-family: "Amazon Ember", Arial, sans-serif;
+    color: var(--amazon-text);
+    margin: 0;
+}
+
+.main-content-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+}

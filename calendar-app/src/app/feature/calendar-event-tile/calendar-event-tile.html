@@ -1,0 +1,49 @@
+<div class="amazon-tile" [class.expanded]="isExpanded()" (click)="toggle()">
+
+    @if(event().is_all_day) {
+    <div class="badge">Limited Time Deal</div>
+    }
+
+    <div class="tile-layout">
+        <div class="image-container">
+            <img [src]="'https://picsum.photos/seed/' + event().google_event_id + '/300/300'" alt="Event">
+        </div>
+
+        <div class="info-container">
+            <h2 class="event-title">
+                {{ event().summary }}
+                <span class="chevron" [class.rotated]="isExpanded()"></span>
+            </h2>
+
+            <div class="ratings">
+                <span class="stars">⭐⭐⭐⭐⭐</span>
+                <span class="count">842</span>
+            </div>
+
+            <div class="event-meta">
+                <span class="price-tag">FREE</span>
+                <span class="prime-icon">✓ prime</span>
+            </div>
+
+            <p class="delivery-info">Starts: <strong>{{ event().start_time | date:'EEEE, MMM d' }}</strong></p>
+            <p class="status-green">Available to enroll</p>
+
+            @if (isExpanded()) {
+            <div class="extra-details">
+                <hr class="divider">
+                <p class="description">{{ event().description }}</p>
+                <p class="location"><strong>Location:</strong> {{ event().location || 'Virtual' }}</p>
+
+                <div class="action-bar-expanded" (click)="$event.stopPropagation()">
+                    <button class="amazon-btn enroll" (click)="onEnroll($event)">
+                        Enroll Now
+                    </button>
+                    <button class="amazon-btn secondary">
+                        Add to Watchlist
+                    </button>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
