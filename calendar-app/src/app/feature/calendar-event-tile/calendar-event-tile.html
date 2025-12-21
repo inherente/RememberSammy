@@ -27,12 +27,10 @@
 
             <p class="delivery-info">Starts: <strong>{{ event().start_time | date:'EEEE, MMM d' }}</strong></p>
             <p class="status-green">Available to enroll</p>
-
             @if (isExpanded()) {
             <div class="extra-details">
                 <hr class="divider">
                 <p class="description">{{ event().description }}</p>
-                <p class="location"><strong>Location:</strong> {{ event().location || 'Virtual' }}</p>
 
                 <div class="action-bar-expanded" (click)="$event.stopPropagation()">
                     <button class="amazon-btn enroll" (click)="onEnroll($event)">
@@ -44,6 +42,7 @@
                 </div>
             </div>
             }
+
         </div>
     </div>
 </div>

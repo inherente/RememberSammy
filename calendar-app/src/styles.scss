@@ -1,25 +1,22 @@
-:root {
-    --amazon-orange: #FF9900;
-    --amazon-yellow: #FFD814;
-    --amazon-yellow-hover: #F7CA00;
-    --amazon-green: #007600;
-    /* Used for "In Stock" / "Available" */
-    --amazon-blue: #007185;
-    /* Used for links */
-    --amazon-text: #0F1111;
-    --amazon-bg: #eaeded;
-}
-
 body,
 html {
-    background-color: var(--amazon-bg);
-    font-family: "Amazon Ember", Arial, sans-serif;
-    color: var(--amazon-text);
+    height: 100%;
     margin: 0;
+    font-family: "Amazon Ember", Arial, sans-serif;
+    /* A subtle, premium-feeling gradient background */
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-attachment: fixed;
+    /* Keeps bg steady while scrolling */
+    color: #1a1a1a;
+    /* Softened black text for better contrast on glass */
 }
 
 .main-content-container {
-    max-width: 1500px;
-    margin: 0 auto;
+    max-width: 800px;
+    /* A narrower column looks better for floating cards */
+    margin: 20px auto;
     padding: 20px;
 }
+
+/* Optional: Update your list container to be invisible so the tiles float freely */
+/* In event-collection.css, remove background and border from .event-list-container */

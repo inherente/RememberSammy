@@ -1,87 +1,134 @@
-/* Remove the old .action-container if you had one */
+/* --- The Floating Glass Card Container --- */
+.amazon-tile {
+    /* Glassmorphism Base */
+    background: rgba(255, 255, 255, 0.65);
+    /* Semi-transparent white */
+    backdrop-filter: blur(12px) saturate(120%);
+    /* The "frosted" effect */
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+    /* For Safari on iOS */
 
-.tile-layout {
-    display: flex;
-    gap: 15px;
+    /* Floating borders are thin and semi-transparent */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    /* Rounder corners feel more organic and modern */
+    border-radius: 20px;
+
+    margin-bottom: 20px;
+    padding: 20px;
+    cursor: pointer;
+
+    /* Soft layered shadows for the "floating" illusion */
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.02),
+        0 10px 20px rgba(0, 0, 0, 0.04);
+
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+    /* Ensures content respects rounded corners */
 }
+
+/* --- Hover State: Lifting Up --- */
+.amazon-tile:hover {
+    /* Lifts the card closer to the user */
+    transform: translateY(-5px) scale(1.01);
+    /* Becomes slightly less transparent */
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.8);
+    /* Shadow becomes deeper */
+    box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.06),
+        0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Expanded State --- */
+.amazon-tile.expanded {
+    /* When open, it feels more grounded/active */
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #a1c4fd;
+    /* A subtle blue tint border when active */
+    box-shadow:
+        0 8px 32px rgba(31, 38, 135, 0.1);
+}
+
+/* --- Inner Content Adjustments for Glass --- */
 
 .image-container img {
-    width: 120px;
-    /* Slightly smaller to keep the collapsed view compact */
-    height: 120px;
-    object-fit: cover;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-/* When expanded, we can make the image a bit larger or keep it consistent */
-.amazon-tile.expanded .image-container img {
-    width: 150px;
-    height: 150px;
-}
-
-.extra-details {
-    margin-top: 12px;
-    animation: fadeIn 0.3s ease-in;
+    /* Adding a subtle shadow to the image makes it pop off the glass */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
 }
 
 .divider {
-    border: 0;
-    border-top: 1px solid #e7e7e7;
-    margin: 10px 0;
+    /* Make dividers subtle on glass backgrounds */
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* The new action bar layout */
-.action-bar-expanded {
-    display: flex;
-    flex-direction: column;
-    /* Stacked for that mobile app feel */
-    gap: 8px;
-    margin-top: 15px;
-}
-
-.amazon-btn {
-    border: 1px solid;
-    border-radius: 8px;
-    /* Amazon recently moved to slightly more rounded corners */
-    padding: 12px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-align: center;
-}
-
-.amazon-btn.enroll {
-    background: #FFD814;
-    border-color: #FCD200;
+/* Typography tweaks for readability on glass */
+.event-title {
     color: #0F1111;
 }
 
-.amazon-btn.secondary {
-    background: #FFFFFF;
-    border-color: #D5D9D9;
-    box-shadow: 0 2px 5px rgba(213, 217, 217, 0.5);
+.delivery-info,
+.location,
+.description {
+    color: #4a5568;
+}
+.amazon-btn {
+    border: none;
+    /* Remove harsh borders */
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    /* A subtle inner glow helps them feel tactile */
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Horizontal buttons for tablet/desktop widths */
+.amazon-btn.enroll {
+    /* A modern, vibrant gradient instead of flat yellow */
+    background: linear-gradient(135deg, #ffd34e, #ffab00);
+    color: #3a2c00;
+}
+
+.amazon-btn.secondary {
+    background: rgba(255, 255, 255, 0.4);
+    /* More transparent */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #444;
+    backdrop-filter: blur(4px);
+    /* A little extra blur for the button itself */
+}
+.amazon-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 15px rgba(0, 0, 0, 0.1);
+    filter: brightness(1.05);
+}
+
+/* This is the container for the buttons inside the expanded area */
+.action-bar-expanded {
+    display: flex;
+    flex-direction: column;
+    /* Stacked by default for mobile */
+    gap: 12px;
+    /* This creates the space between buttons */
+    margin-top: 20px;
+    /* Pushes buttons away from the description text */
+}
+
+/* Tablet & Desktop: Switch to side-by-side */
 @media (min-width: 600px) {
     .action-bar-expanded {
         flex-direction: row;
+        /* Side-by-side on larger screens */
+        gap: 16px;
+        /* Horizontal space between buttons */
     }
 
     .amazon-btn {
         flex: 1;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
+        /* Makes both buttons the same width */
     }
 }
