@@ -1,11 +1,24 @@
+
+export interface CalendarAttachment {
+    fileId: string;
+    fileUrl: string;
+    title: string;
+    mimeType: string;
+    iconLink?: string;
+ // Agregamos este campo para soportar el método de previsualización que planeas usar
+    thumbnailLink?: string; 
+}
+
 export interface CalendarEvent {
-    google_event_id: string;
+    googleEventId: string;
     summary: string;
     description: string;
     location: string;
-    start_time: string;
-    end_time: string;
-    is_all_day: number;
+    startTime: string;
+    endTime: string;
+    isAllDay: number; // Mantenemos number por tu implementación en DB/PHP
+ // El signo '?' indica que es opcional, ya que no todos los eventos tendrán archivos
+    attachments?: CalendarAttachment[];
 }
 
 export interface ApiResponse {

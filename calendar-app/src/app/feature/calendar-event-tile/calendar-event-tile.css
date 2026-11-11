@@ -64,6 +64,26 @@
     border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
+/* --- Title Row: title on the left, ratings aligned right --- */
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.title-row .ratings {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    margin-left: auto;
+}
+
+.title-row .event-title {
+    margin: 0;
+}
+
 /* Typography tweaks for readability on glass */
 .event-title {
     color: #0F1111;
@@ -130,5 +150,149 @@
     .amazon-btn {
         flex: 1;
         /* Makes both buttons the same width */
+    }
+}
+/* Style for the native dialog backdrop */
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+.enroll-modal {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.modal-form h3 {
+    margin-top: 0;
+    color: #111;
+}
+
+.modal-sub {
+    font-size: 13px;
+    color: #565959;
+    margin-bottom: 20px;
+}
+
+.modal-form label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.modal-form input {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #a6a9a9;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.modal-form input:focus {
+    outline: none;
+    border-color: #e77600;
+    box-shadow: 0 0 3px rgba(228, 121, 17, 0.5);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.maps-link {
+    color: #007185; /* Amazon-style clean dark teal link color */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.maps-link:hover {
+    color: #c45500; /* Subtle warm amber hover accent color */
+    text-decoration: underline;
+}
+
+/* --- Mobile Responsive Breakpoint --- */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Remove hardcoded desktop sizing and switch to vertical stacking */
+    .tile-layout {
+        display: flex;
+        flex-direction: column; /* Stacks image on top of text content */
+        gap: 16px;
+        padding: 12px;
+    }
+
+    /* 2. Make the image container span the full width of the phone screen */
+    .image-container {
+        width: 100% !important;
+        max-width: 100%;
+        height: 200px; /* Gives a consistent banner height on mobile */
+        overflow: hidden;
+        border-radius: 4px;
+    }
+
+    .event-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Prevents image distortion */
+    }
+
+    /* 3. Give text content breathing room and optimize tap targets */
+    .info-container {
+        width: 100% !important;
+        padding: 0;
+    }
+
+    .event-title {
+        font-size: 1.25rem; /* Scales text down slightly so it doesn't wrap aggressively */
+        line-height: 1.4;
+    }
+
+    /* 4. Convert action buttons into full-width mobile tap targets */
+    .action-bar-expanded {
+        display: flex;
+        flex-direction: column; /* Stack buttons vertically on mobile */
+        gap: 10px;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .amazon-btn {
+        width: 100% !important; /* Spans full width for easy thumb tapping */
+        height: 48px; /* Apple Human Interface Guideline minimum target size */
+        font-size: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 5. Optimize the native <dialog> pop-up modal for mobile views */
+    .enroll-modal {
+        width: 90% !important; /* Takes up almost full screen width on phones */
+        max-width: 380px;
+        padding: 20px;
+        border-radius: 8px;
+        bottom: 20px; /* Positions nicely relative to mobile keyboards */
+    }
+
+    .modal-form label {
+        font-size: 0.95rem;
+    }
+
+    .modal-form input {
+        height: 44px; /* Increases input height for easier typing on glass */
+        font-size: 16px; /* CRITICAL: iOS safari zooms in automatically if font-size < 16px */
+    }
+
+    .modal-actions {
+        flex-direction: column-reverse; /* Stacks 'Confirm' on top of 'Cancel' */
+        gap: 8px;
     }
 }

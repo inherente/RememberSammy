@@ -18,7 +18,7 @@ export class EventCollection implements OnInit{
     ngOnInit(): void {
         console.log('EventCollection initialized');
  // For now, we hardcode 'root' or your test tenant
-        this.calendarService.getEvents('tenant_acme').subscribe({
+        this.calendarService.getEvents('root@localhost').subscribe({
             next: (response) => {
          // We "set" the signal value, which notifies the UI
                 this.events.set(response.data);

@@ -7,7 +7,7 @@
     } @else {
     <!--event-grid-->
     <div class="event-list-container">
-        @for (item of events(); track item.google_event_id) {
+        @for (item of events(); track item.googleEventId) {
         <app-calendar-event-tile [event]="item"></app-calendar-event-tile>
         } @empty {
         <p>No events found in the database.</p>
